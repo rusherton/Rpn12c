@@ -1,0 +1,55 @@
+:root{--bg:#0d1115;--body:#1b232b;--bezel:#11171c;--key:#2a333c;--key-hi:#36414b;--txt:#eef2f5;--fcol:#f2a93b;--gcol:#56b8ee;--lcd:#b9c6a6;--lcdtxt:#1a2014}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+body{perspective:1800px}
+.flipper{position:fixed;inset:0;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.4,.1,.2,1)}
+.flipper.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.front{display:block}
+.back{transform:rotateY(180deg);background:#20262c;display:flex;flex-direction:column}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain;padding:0 10px}
+/* calculator is laid out at a fixed 1000x590 design size and scaled/rotated by ui.js */
+.calc{position:absolute;left:50%;top:50%;width:1000px;height:590px;transform-origin:center center;background:linear-gradient(#222c35,var(--body));border-radius:26px;padding:18px 22px 22px;box-shadow:0 12px 40px #000a, inset 0 1px 0 #ffffff14;display:flex;flex-direction:column;gap:12px}
+.top{display:flex;align-items:center;gap:22px;height:118px}
+.brandbar{display:flex;flex-direction:column;justify-content:center;width:200px}
+.brand{font-weight:800;font-size:30px;letter-spacing:.14em;color:#e6edf2}
+.tag{font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:#8fa1af}
+.lcd{flex:1;height:100%;background:linear-gradient(#c3cfb0,var(--lcd));border:6px solid var(--bezel);border-radius:10px;color:var(--lcdtxt);display:flex;flex-direction:column;justify-content:center;align-items:flex-end;padding:4px 22px;box-shadow:inset 0 3px 8px #0005}
+.digits{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:54px;letter-spacing:.04em;white-space:pre;line-height:1}
+.digits.blink{animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:.25}}
+.ann{display:flex;gap:22px;font-size:13px;font-weight:700;letter-spacing:.08em;min-height:16px;margin-top:6px}
+.ann span{visibility:hidden}.ann span.on{visibility:visible}
+.keys{flex:1;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(4,1fr);column-gap:14px;row-gap:2px;position:relative}
+.cell{display:flex;flex-direction:column;min-width:0;position:relative;z-index:1}
+.fl{height:29px;padding-top:13px;font-size:12.5px;font-weight:700;color:var(--fcol);text-align:center;white-space:nowrap;line-height:17px}
+.key{flex:1;border:0;border-radius:8px;background:linear-gradient(var(--key-hi),var(--key));color:var(--txt);box-shadow:0 3px 0 #0b0f12,0 4px 6px #0006;display:flex;flex-direction:column;align-items:stretch;padding:0;overflow:hidden;cursor:pointer;font:inherit;touch-action:manipulation}
+.key .main{flex:1.25;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:600}
+.key .gl{flex:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gcol);background:#00000033;min-height:18px}
+.key.down{transform:translateY(2px);box-shadow:0 1px 0 #0b0f12;filter:brightness(1.25)}
+.key.num .main{font-size:25px}
+.fkey .key{background:linear-gradient(#f6b955,#d98c1f)}.fkey .key .main{color:#1d1406;font-size:24px}
+.gkey .key{background:linear-gradient(#73c6f3,#2f93cc)}.gkey .key .main{color:#06141d;font-size:24px}
+.on .key .main{font-size:28px}
+.enter .key .main{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:-.05em;font-size:18px}
+.bracket{position:relative;z-index:2;align-self:start;height:8px;margin:7px 6px 0;border:1.5px solid var(--fcol);border-bottom:0;border-radius:3px 3px 0 0;pointer-events:none}
+.bracket b{position:absolute;left:50%;top:-6px;line-height:11px;transform:translateX(-50%);background:var(--body);padding:0 6px;font-size:10.5px;letter-spacing:.12em;color:var(--fcol)}
+/* back panel */
+.backhead{flex:none;display:flex;align-items:center;gap:14px;padding:12px 16px;background:#161b20f2;border-bottom:1px solid #3a444d;z-index:2}
+.backhead h1{font-size:18px;margin:0;letter-spacing:.08em;color:#dfe7ec}
+.backbtn{border:0;border-radius:9px;padding:9px 14px;background:var(--key-hi);color:var(--txt);font-size:15px;font-weight:600}
+.onglyph{font-size:18px;margin-right:4px}
+.guide{padding:14px 14px 40px;margin-bottom:30px !important;display:grid;gap:14px;max-width:1100px;margin:0 auto;background:#dfe3e2;color:#111;border-radius:10px;margin-top:14px}
+.sec{display:grid;grid-template-columns:34px 1fr;border:1.5px solid #222;border-radius:4px;background:#f6f7f5}
+.sec .tagv{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;font-weight:800;letter-spacing:.2em;border-right:1.5px solid #222;font-size:13px}
+.item{display:grid;grid-template-columns:minmax(150px,1fr) 2fr;gap:10px;padding:10px 12px;border-bottom:1px solid #bbb}
+.item:last-child{border-bottom:0}
+.prob{font-size:13.5px;line-height:1.5}
+.steps{margin:0;padding-left:22px;font-size:13.5px;line-height:2.05}
+.k{display:inline-block;min-width:22px;padding:0 5px;margin:0 1px;border:1px solid #222;border-radius:3px;background:#fff;font:600 12px ui-monospace,Menlo,monospace;text-align:center;line-height:18px;vertical-align:1px}
+.k.kf{background:var(--fcol);border-color:#7a4e0a}.k.kg{background:var(--gcol);border-color:#155a82}
+.k.tf{color:#8a5200}.k.tg{color:#0a5784}
+.num{font-weight:700;margin:0 2px}
+.note{color:#444;font-size:12.5px}.res{font-family:ui-monospace,Menlo,monospace;font-weight:700;margin-left:4px}
+.sigma{display:grid;grid-template-columns:repeat(3,auto);gap:4px 22px;padding:10px 14px;font-size:14px;align-content:start}
+.foot{font-size:12px;color:#333;padding:0 4px}
+@media (max-width:640px){.item{grid-template-columns:1fr}.steps{line-height:2.2}}

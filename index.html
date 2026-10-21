@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RPN12C">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#161c22">
+<title>RPN12C</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png">
+<link rel="stylesheet" href="./src/style.css">
+</head><body>
+<div id="flipper" class="flipper">
+  <section class="face front" aria-label="Calculator">
+    <div id="calc" class="calc">
+      <div class="top">
+        <div class="brandbar"><span id="brand" class="brand">RPN12C</span><span class="tag">financial</span></div>
+        <div class="lcd" id="lcd" aria-live="polite">
+          <div id="disp" class="digits">0.00</div>
+          <div class="ann"><span id="a-f">f</span><span id="a-g">g</span><span id="a-begin">BEGIN</span><span id="a-dmy">D.MY</span><span id="a-c">C</span><span id="a-prgm">PRGM</span></div>
+        </div>
+      </div>
+      <div id="keys" class="keys"></div>
+    </div>
+  </section>
+  <section class="face back" aria-label="Quick reference">
+    <header class="backhead">
+      <button id="flipBack" class="backbtn" aria-label="Back to calculator"><span class="onglyph">≡</span> Calculator</button>
+      <h1>Quick Reference</h1>
+    </header>
+    <div class="scroll"><div id="guide" class="guide"></div></div>
+  </section>
+</div>
+<script type="module" src="./src/ui.js"></script>
+</body></html>
